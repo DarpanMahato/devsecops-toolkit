@@ -6,21 +6,21 @@
 
 ## About This Project
 
-This toolkit was developed as an industry group project for **SCI700 — Research/Industry Dissertation 1** at the **University of the Sunshine Coast (UniSC)**, Trimester 1, 2026.
+This toolkit was developed as an industry group project for **SCI700 - Research/Industry Dissertation 1** at the **University of the Sunshine Coast (UniSC)**, Trimester 1, 2026.
 
 ### Group 3
 
 | Member | Role | Responsibility |
 |---|---|---|
-| **Sagar Thapa Magar** | Project Lead | SAST & Pipeline Orchestration — Semgrep integration, Jenkinsfile template, stage sequencing |
-| **Darpan Mahato** | Developer | Container & Dependency Scanning — Trivy integration, YAML policy-as-code, severity gate logic |
-| **Gowtham Sai Sridhar Addhanki** | Developer | DAST & Reporting — OWASP ZAP integration, unified HTML dashboard, multi-tool report aggregation |
+| **Sagar Thapa Magar** | Project Lead | SAST & Pipeline Orchestration - Semgrep integration, Jenkinsfile template, stage sequencing |
+| **Darpan Mahato** | Developer | Container & Dependency Scanning - Trivy integration, YAML policy-as-code, severity gate logic |
+| **Gowtham Sai Sridhar Addhanki** | Developer | DAST & Reporting - OWASP ZAP integration, unified HTML dashboard, multi-tool report aggregation |
 
 ---
 
 ## What This Is
 
-The DevSecOps Toolkit for Jenkins automatically runs three layers of security scanning on every code push — no manual steps, no security expertise required. If a vulnerability is found, the build stops. If everything is clean, the code ships. A unified HTML security report is generated after every run.
+The DevSecOps Toolkit for Jenkins automatically runs three layers of security scanning on every code push - no manual steps, no security expertise required. If a vulnerability is found, the build stops. If everything is clean, the code ships. A unified HTML security report is generated after every run.
 
 ```
 Developer pushes code
@@ -29,7 +29,7 @@ Jenkins pipeline triggers automatically
         ↓
 Build → Trivy → Semgrep → OWASP ZAP → Report
         ↓
-PASS — code proceeds  |  FAIL — build blocked, report generated
+PASS - code proceeds  |  FAIL - build blocked, report generated
 ```
 
 ---
@@ -47,7 +47,7 @@ PASS — code proceeds  |  FAIL — build blocked, report generated
 ## Novel Contributions
 
 **1. Language-agnostic Jenkinsfile templates**
-Pipeline templates are parameterised so they work for any programming language or framework. Teams supply only a config file — they never modify the template itself.
+Pipeline templates are parameterised so they work for any programming language or framework. Teams supply only a config file - they never modify the template itself.
 
 **2. Policy-as-code via YAML**
 Each project defines its own severity thresholds and exceptions in a single `policy.yml` file. A startup and a financial institution can enforce different standards using the same toolkit.
@@ -63,9 +63,9 @@ Findings from all three tools are aggregated into one HTML report published by J
 devsecops-toolkit/
 ├── jenkins.Dockerfile        # Custom Jenkins image with all tools baked in
 ├── docker-compose.yml        # Full stack configuration
-├── policy.yml                # Severity policy config — the only file teams edit
+├── policy.yml                # Severity policy config - the only file teams edit
 ├── generate-report.py        # Unified HTML dashboard generator
-├── Jenkinsfile               # Pipeline template — copy into any project repo
+├── Jenkinsfile               # Pipeline template - copy into any project repo
 ├── shared-library/           # Reusable Groovy pipeline steps
 │   └── vars/
 │       └── devsecops.groovy
@@ -170,10 +170,10 @@ No pipeline code changes are required. Different projects can enforce different 
 
 ## Pipeline Stages
 
-### Stage 1 — Build
+### Stage 1 - Build
 Builds a Docker image from the application source code. Every build produces a uniquely tagged image (`app-name:BUILD_NUMBER`).
 
-### Stage 2 — Trivy (Container & Dependency Scan)
+### Stage 2 - Trivy (Container & Dependency Scan)
 Scans the Docker image for:
 - Known CVEs in OS packages
 - Vulnerable libraries in `requirements.txt`, `package.json`, `pom.xml`
@@ -181,7 +181,7 @@ Scans the Docker image for:
 
 Fails the build if findings exceed `failOnSeverity` in `policy.yml`.
 
-### Stage 3 — Semgrep (SAST)
+### Stage 3 - Semgrep (SAST)
 Performs static analysis on the source code without running it. Detects:
 - SQL injection
 - Cross-site scripting (XSS)
@@ -191,7 +191,7 @@ Performs static analysis on the source code without running it. Detects:
 
 Fails the build if blocking issues are found.
 
-### Stage 4 — OWASP ZAP (DAST)
+### Stage 4 - OWASP ZAP (DAST)
 Starts the application in a Docker container and simulates an attacker. Detects:
 - Missing security headers (CSP, X-Frame-Options, etc.)
 - Runtime vulnerabilities invisible to static analysis
@@ -199,7 +199,7 @@ Starts the application in a Docker container and simulates an attacker. Detects:
 
 Fails the build if high-risk alerts are found (exit code 2).
 
-### Stage 5 — Unified Report
+### Stage 5 - Unified Report
 Aggregates findings from all three tools into a single HTML dashboard published by Jenkins. Accessible via the **Security Report** link in the Jenkins sidebar after each build.
 
 ---
@@ -260,9 +260,8 @@ That is the entire setup. The team continues pushing code as normal. Security sc
 
 ## Acknowledgements
 
-Developed as part of **SCI700 — Research/Industry Dissertation 1**
-School of Science, Technology and Engineering
-University of the Sunshine Coast (UniSC), Trimester 1, 2026
+Developed as part of **SCI700 - Research/Industry Dissertation 1**
+University of the Sunshine Coast (UniSC), Adelaide Campus, Trimester 1, 2026
 
 ---
 
