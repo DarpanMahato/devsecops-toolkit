@@ -1,0 +1,24 @@
+# Jenkins data — too large and machine-specific
+jenkins_home/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# ZAP download artifacts
+*.tar.gz
+*.zip
+
+# Report outputs — generated per build
+reports/
+*.json
+*.xml
+*.html
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env

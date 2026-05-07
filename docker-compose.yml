@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  jenkins:
+    build:
+      context: .
+      dockerfile: jenkins.Dockerfile
+    container_name: jenkins
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - ./jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./shared-library:/var/jenkins_home/shared-library
+      - ./sample-app:/var/jenkins_home/sample-app
+      - ./policy.yml:/var/jenkins_home/policy.yml
+    environment:
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - JAVA_OPTS=-Dhudson.plugins.git.GitSCM.ALLOW_LOCAL_CHECKOUT=true -Dhudson.model.DirectoryBrowserSupport.CSP=
+    user: root
+    restart: unless-stopped

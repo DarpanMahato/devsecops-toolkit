@@ -1,0 +1,19 @@
+# DevSecOps Toolkit — Policy Configuration
+# Edit these values per project. No pipeline code changes needed.
+
+# Severity level that causes a build failure: CRITICAL, HIGH, MEDIUM, LOW
+failOnSeverity: CRITICAL
+
+# Toggle individual scanners on or off
+trivyEnabled: true
+semgrepEnabled: true
+zapEnabled: true
+
+# Trivy-specific settings
+trivySkipDirs: ".git,node_modules,venv"
+
+# Semgrep ruleset (use 'auto' for Semgrep's recommended rules)
+semgrepRuleset: auto
+
+# ZAP scan type: baseline (passive) or full (active attack)
+zapScanType: baseline
