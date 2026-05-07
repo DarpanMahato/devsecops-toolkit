@@ -265,4 +265,4 @@ University of the Sunshine Coast (UniSC), Adelaide Campus, Trimester 1, 2026
 
 ---
 
-*A language-agnostic, policy-driven Jenkins DevSecOps toolkit — requiring no external platform and deployable by any team in under one hour.*
+*A language-agnostic, policy-driven Jenkins DevSecOps toolkit - requiring no external platform and deployable by any team in under one hour.*
