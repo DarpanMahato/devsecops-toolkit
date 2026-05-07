@@ -1,12 +1,26 @@
 # DevSecOps Toolkit for Jenkins
 
-> A language-agnostic, policy-driven CI/CD security framework that unifies container scanning, static analysis, and dynamic testing into a single reusable pipeline deployable by any team in under few hours.
+> A language-agnostic, policy-driven CI/CD security framework that unifies container scanning, static analysis, and dynamic testing into a single reusable pipeline deployable by any team in under one hour.
+
+---
+
+## About This Project
+
+This toolkit was developed as an industry group project for **SCI700 — Research/Industry Dissertation 1** at the **University of the Sunshine Coast (UniSC)**, Trimester 1, 2026.
+
+### Group 3
+
+| Member | Role | Responsibility |
+|---|---|---|
+| **Sagar Thapa Magar** | Project Lead | SAST & Pipeline Orchestration — Semgrep integration, Jenkinsfile template, stage sequencing |
+| **Darpan Mahato** | Developer | Container & Dependency Scanning — Trivy integration, YAML policy-as-code, severity gate logic |
+| **Gowtham Sai Sridhar Addhanki** | Developer | DAST & Reporting — OWASP ZAP integration, unified HTML dashboard, multi-tool report aggregation |
 
 ---
 
 ## What This Is
 
-The DevSecOps Toolkit for Jenkins automatically runs three layers of security scanning on every code push , no manual steps, no security expertise required. If a vulnerability is found, the build stops. If everything is clean, the code ships. A unified HTML security report is generated after every run.
+The DevSecOps Toolkit for Jenkins automatically runs three layers of security scanning on every code push — no manual steps, no security expertise required. If a vulnerability is found, the build stops. If everything is clean, the code ships. A unified HTML security report is generated after every run.
 
 ```
 Developer pushes code
@@ -52,7 +66,6 @@ devsecops-toolkit/
 ├── policy.yml                # Severity policy config — the only file teams edit
 ├── generate-report.py        # Unified HTML dashboard generator
 ├── Jenkinsfile               # Pipeline template — copy into any project repo
-├── jenkins_home/             # Jenkins persistent data (auto-generated)
 ├── shared-library/           # Reusable Groovy pipeline steps
 │   └── vars/
 │       └── devsecops.groovy
@@ -75,7 +88,7 @@ devsecops-toolkit/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/devsecops-toolkit.git
+git clone https://github.com/DarpanMahato/devsecops-toolkit.git
 cd devsecops-toolkit
 ```
 
@@ -206,36 +219,6 @@ That is the entire setup. The team continues pushing code as normal. Security sc
 
 ---
 
-## Integrating with GitHub Branch Protection
-
-To block vulnerable code from merging into `main`:
-
-1. Configure Jenkins to post commit statuses to GitHub using the GitHub Integration plugin
-2. In your GitHub repo go to **Settings → Branches → Add rule**
-3. Set branch pattern to `main`
-4. Check **Require status checks to pass before merging**
-5. Add `DevSecOps/security-scan` as a required check
-
-The merge button will be disabled until Jenkins reports a passing build.
-
----
-
-## Security Report
-
-After each build, Jenkins publishes a unified HTML dashboard showing:
-
-- **Overall status** — PASSED or FAILED
-- **Trivy findings** — CVE ID, package, severity, installed version, fixed version
-- **Semgrep findings** — file, line, rule, severity, description
-- **ZAP alerts** — alert name, risk level, description
-
-The report is accessible at:
-```
-http://YOUR-JENKINS-IP:8080/job/YOUR-JOB-NAME/LAST_BUILD/Security_Report/
-```
-
----
-
 ## DevSecOps Principles Implemented
 
 | Principle | Implementation |
@@ -261,16 +244,6 @@ http://YOUR-JENKINS-IP:8080/job/YOUR-JOB-NAME/LAST_BUILD/Security_Report/
 
 ---
 
-## Team Structure
-
-| Member | Responsibility |
-|---|---|
-| Member A | SAST & Pipeline Orchestration — Semgrep integration, Jenkinsfile template, stage sequencing |
-| Member B | Container & Dependency Scanning — Trivy integration, YAML policy-as-code, severity gate logic |
-| Member C | DAST & Reporting — OWASP ZAP integration, unified HTML dashboard, multi-tool report aggregation |
-
----
-
 ## Requirements
 
 | Requirement | Version |
@@ -285,9 +258,11 @@ http://YOUR-JENKINS-IP:8080/job/YOUR-JOB-NAME/LAST_BUILD/Security_Report/
 
 ---
 
-## License
+## Acknowledgements
 
-This project is developed as an industry group project for educational purposes.
+Developed as part of **SCI700 — Research/Industry Dissertation 1**
+School of Science, Technology and Engineering
+University of the Sunshine Coast (UniSC), Trimester 1, 2026
 
 ---
 
